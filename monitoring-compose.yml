@@ -1,25 +1,30 @@
 version: '3.8'
 
 services:
-  prometheus:
+  prometheus-2:
     image: prom/prometheus
-    container_name: prometheus
+    container_name: prometheus-2
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "9091:9090"
     networks:
       - cockroach-net
 
-  grafana:
+  grafana-2:
     image: grafana/grafana
-    container_name: grafana
+    container_name: grafana-2
     ports:
-      - "3000:3000"
+      - "3067:3000"
     depends_on:
-      - prometheus
+      - prometheus-2
     networks:
       - cockroach-net
+    volumes:
+      - grafana-data:/var/lib/grafana  # Store Grafana data in persistent storage on the drive
+
+volumes:
+  grafana-data:
 
 networks:
   cockroach-net:

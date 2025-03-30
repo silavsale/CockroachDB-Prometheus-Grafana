@@ -2,6 +2,18 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'cockroachdb'
+  - job_name: 'cockroachdb-2'
+    metrics_path: '/_status/vars'   # This is very important to make cockroachdb visible in prometheus
     static_configs:
-      - targets: ['cockroachdb:8080']
+      - targets: ['cockroachdb-2:8080']
+
+# global:
+#   scrape_interval: 15s
+
+# scrape_configs:
+#   - job_name: 'cockroachdb-2'
+#     static_configs:
+#       - targets: ['host.docker.internal:8093']
+
+
+# host.docker.internal:

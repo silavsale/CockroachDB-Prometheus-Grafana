@@ -17,3 +17,15 @@ docker compose -f cockroach-compose.yml up -d
 ```sh
 docker compose -f monitoring-compose.yml up -d
 ```
+
+---
+
+# Default ports
+
+- cockroachdb Web UI + Prometheus metrics :8080
+- cockroachdb SQL :26257
+- prometheus :9090
+- grafana :3000
+
+---
+
