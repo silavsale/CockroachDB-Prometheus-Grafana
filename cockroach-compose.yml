@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:v23.1.11
+    container_name: cockroachdb
+    command: start-single-node --insecure
+    ports:
+      - "26257:26257"   # SQL
+      - "8080:8080"     # Web UI + Prometheus metrics
+    networks:
+      - cockroach-net
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+
+volumes:
+  cockroach-data:
+
+networks:
+  cockroach-net:
+    external: true
